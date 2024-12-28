@@ -13,6 +13,7 @@ public class MainMenu extends JFrame implements ActionListener {
     private Image bgImage;
     private JLabel title;
     private static Clip musicClip;
+    private static boolean isSongPlaying = false;
 
     MainMenu() {
 
@@ -24,9 +25,6 @@ public class MainMenu extends JFrame implements ActionListener {
 
         ImageIcon icon = new ImageIcon("icon/hololive.png");
         setIconImage(icon.getImage());
-
-        // for some reason swing cant play mp3
-        playMusic("bgm/MainMusic.wav");
 
         bgImage = randomBG();
 
@@ -77,7 +75,13 @@ public class MainMenu extends JFrame implements ActionListener {
         bgPanel.add(exit);
 
         setVisible(true);
-    }
+
+        if (!isSongPlaying) {
+            playMusic("bgm/MainMusic.wav");
+            isSongPlaying = true;
+        }
+
+}
 
     private static void playMusic(String filePath) {
         try {
@@ -119,12 +123,11 @@ public class MainMenu extends JFrame implements ActionListener {
             stopMusic();
             this.dispose();
         } else if (e.getSource() == play) {
-            stopMusic();
             this.dispose();
             new CharacterSelect();
         } else if (e.getSource() == settings) {
-            this.dispose();
             stopMusic();
+            this.dispose();
             new Settings();
         }
     }

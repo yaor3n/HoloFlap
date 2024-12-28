@@ -10,6 +10,7 @@ import java.util.Random;
 public class CharacterSelect extends JFrame implements ActionListener{
 
     private JButton back;
+    private JLabel label;
 
     CharacterSelect() {
 
@@ -35,9 +36,18 @@ public class CharacterSelect extends JFrame implements ActionListener{
         bgPanel.setLayout(null);
         setContentPane(bgPanel);
 
+        label = new JLabel("Choose your Idol:");
+        label.setFont(new Font("SansSerif", Font.BOLD, 35));
+        label.setBounds(450, 30, 400, 50);
+        label.setForeground(new Color(0xdae3ff));
+        bgPanel.add(label);
+
         back = new JButton("Back");
-        back.setFont(new Font("SansSerif", Font.BOLD, 20));
-        back.setBounds(468, 640, 100, 30);
+        back.setFont(new Font("SansSerif", Font.BOLD, 30));
+        back.setBounds(500, 600, 200, 60);
+        back.setBackground(new Color(0xdae3ff));
+        back.setForeground(new Color(0x031930));
+        back.setBorder(BorderFactory.createLineBorder(new Color(0x031930), 3));
         back.addActionListener(this);
         bgPanel.add(back);
 
@@ -51,4 +61,9 @@ public class CharacterSelect extends JFrame implements ActionListener{
             new MainMenu();
         }
     }
+
+    public static void  main(String[] args) {
+        new CharacterSelect();
+    }
+
 }
